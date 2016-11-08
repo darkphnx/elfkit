@@ -3,6 +3,7 @@ module RandomPermalink
 
   included do
     before_validation :assign_random_permalink
+    validates :permalink, uniqueness: true
   end
 
   def to_param
