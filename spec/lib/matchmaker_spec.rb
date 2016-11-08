@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Elfkit::Matchmaker do
-  let(:participants) { (1..7).map { |i| Participant.new(:name => i) } }
+  let(:participants) { build_list(:participant, 7) }
   let(:matchmaker) { described_class.new(participants) }
 
   describe '.new' do
@@ -23,7 +23,7 @@ RSpec.describe Elfkit::Matchmaker do
 
     it 'Never matches a participant to themselves' do
       matches.each do |gifter, giftee|
-        expect(gifter.name).to_not eq(giftee.name)
+        expect(gifter).to_not eq(giftee)
       end
     end
 
