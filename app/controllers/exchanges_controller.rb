@@ -1,10 +1,10 @@
 class ExchangesController < ApplicationController
   before_action do
-    @exchange = Exchange.find_by_permalink(params[:id])
+    @exchange = Exchange.find_by_permalink!(params[:id])
   end
 
   def new
-    @exchange = Exchange.new
+    @exchange = Exchange.new(match_at: 2.weeks.from_now, exchange_at: 4.weeks.from_now)
     @first_participant = Participant.new
   end
 

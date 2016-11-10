@@ -1,5 +1,11 @@
+- if logged_in?
+  %span
+    Logged in as #{current_user.name}
+    = link_to "Logout", logout_path
+
 %h1
   = @exchange.title
+
 %span= link_to "Edit", edit_exchange_path(@exchange)
 
 %h3 Share this URL with your friends and colleagues

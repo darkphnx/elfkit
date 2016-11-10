@@ -10,4 +10,9 @@ class Participant < ApplicationRecord
   before_validation do
     self.login_token ||= SecureRandom.urlsafe_base64
   end
+
+  def self.login(permalink, login_token)
+    matches = where(permalink: permalink, login_token: login_token)
+    matches.first
+  end
 end
