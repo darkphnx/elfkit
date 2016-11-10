@@ -12,7 +12,7 @@
 
 %h2= link_to "#{request.domain}#{exchange_path(@exchange)}", exchange_url(@exchange)
 
-- if @exchange.signup_stage?
+- if @exchange.signup_stage? && logged_in? && current_user.admin?
   %h3 Or send them an e-mail
 
   = form_tag exchange_participants_path(@exchange), method: :post do
