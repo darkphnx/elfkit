@@ -1,2 +1,34 @@
-%h1= @exchange.title
-%p Find me in app/views/exchanges/show.html.haml
+%h1
+  = @exchange.title
+%span= link_to "Edit", edit_exchange_path(@exchange)
+
+%h3 Share this URL with your friends and colleagues
+
+%h2= link_to "#{request.domain}#{exchange_path(@exchange)}", exchange_url(@exchange)
+
+- if @exchange.signup_stage?
+  %h3 Or send them an e-mail
+
+  = form_tag exchange_participants_path(@exchange), method: :post do
+    = text_field_tag 'participants[][name]', '', placeholder: "Name"
+    = email_field_tag 'participants[][email_address]', '', placeholder: "E-Mail Address"
+
+    = submit_tag 'Invite'
+
+
+- if @exchange.signup_stage?
+  %h2 Time to Matching
+  %p= distance_of_time_in_words_to_now @exchange.match_at
+  %p= @exchange.match_at.to_s(:short)
+- elsif @exchange.matched_stage?
+  %h2 Time until Gifting
+  %p= distance_of_time_in_words_to_now @exchange.exchange_at
+  %p= @exchange.exchange_at.to_s(:short)
+- else
+  %h2 This Exhange is Finished
+
+
+%h2 Who's in?
+%ul
+  - @exchange.participants.each do |participant|
+    %li= participant.name

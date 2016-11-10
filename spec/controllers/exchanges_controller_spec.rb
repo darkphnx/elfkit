@@ -11,7 +11,8 @@ RSpec.describe ExchangesController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      exchange = create(:exchange)
+      get :show, id: exchange.permalink
       expect(response).to have_http_status(:success)
     end
   end

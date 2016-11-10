@@ -14,7 +14,7 @@ class ExchangesController < ApplicationController
 
     @exchange = Exchange.new(safe_exchange_params)
     @exchange.participants << @first_participant
-    
+
     if @exchange.save
       redirect_to exchange_path(@exchange)
     else
@@ -23,6 +23,17 @@ class ExchangesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @exchange.update_attributes(safe_exchange_params)
+      redirect_to exchange_path(@exchange)
+    else
+      render :edit
+    end
   end
 
   private
