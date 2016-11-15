@@ -1,0 +1,3 @@
+%h2 Time until Gifting
+%p= distance_of_time_in_words_to_now @exchange.exchange_at
+%p= @exchange.exchange_at.to_s(:short)

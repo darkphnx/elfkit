@@ -1,0 +1,3 @@
+%ul
+  - @exchanges.each do |exchange|
+    %li= link_to exchange.title, exchange_path(exchange)

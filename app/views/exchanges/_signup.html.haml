@@ -1,0 +1,37 @@
+- if logged_in?
+  %h2 Thanks for joining!
+
+  - if current_user.participating?
+    %p You are participating in this exhange. To change your mind, just use the button below.
+  - else
+    %p You are not participating in this exchange. To change your mind and join the fun, click the button below.
+
+- else
+  .row
+    .one.column &nbsp;
+    .ten.columns
+      %h2 Register your interest in this exchange:
+
+  = form_for [@exchange, @participant] do |f|
+    .row
+      .one.column &nbsp;
+      .five.columns= f.text_field :name, placeholder: "Name", class: 'u-full-width'
+      .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'
+    .row
+      .eleven.columns= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
+    .row
+      .one.columns &nbsp;
+      .ten.columns
+        %p
+          After entering your details you'll receive an email which you should use to confirm your participation. You may
+          withdraw your participation any time before the matching date.
+
+%hr
+
+.row
+  .six.columns
+    %h2 Time to Matching:
+  .six.columns
+    %h3= countdown_timer @exchange.match_at
+    %p
+      %em= @exchange.match_at.to_s(:long)

@@ -1,6 +1,10 @@
 class ExchangesController < ApplicationController
   before_action do
-    @exchange = Exchange.find_by_permalink!(params[:id])
+    @exchange = Exchange.find_by_permalink!(params[:id]) if params[:id]
+  end
+
+  def index
+    @exchanges = Exchange.all
   end
 
   def new
@@ -23,6 +27,7 @@ class ExchangesController < ApplicationController
   end
 
   def show
+    @participant = @exchange.participants.build
   end
 
   def edit

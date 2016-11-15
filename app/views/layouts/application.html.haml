@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Elfkit
+
+    = csrf_meta_tags
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:400,300,600'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    .container
+      = yield

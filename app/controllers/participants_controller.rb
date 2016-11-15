@@ -4,16 +4,18 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    safe_participant_params[:participants].each do |participant|
-      @exchange.participants.create(participant)
-    end
+    @participant = @exchange.participants.build(safe_participant_params)
 
-    redirect_to exchange_path(@exchange)
+    if @participant.save
+      redirect_to exchange_path(@exchange), notice: "Invite sent, please check your e-mail"
+    else
+      redirect_to exchange_path(@exchange), alert: "Sorry, couldn't send invite"
+    end
   end
 
   private
 
   def safe_participant_params
-    params.permit(participants: [:name, :email_address])
+    params.require(:participant).permit(:name, :email_address)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110161905) do
+ActiveRecord::Schema.define(version: 20161115185403) do
 
   create_table "exchanges", force: :cascade do |t|
     t.string   "title"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20161110161905) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.         "admin"
+    t.boolean  "participating"
     t.index ["exchange_id"], name: "index_participants_on_exchange_id"
   end
 
