@@ -1,1 +1,7 @@
-%h2 This Exhange is Finished
+.row
+  .twelve.columns
+    %h2 This exhange is finished
+    - if logged_in?
+      %p We hope everyone had a great time, and that #{current_participant.giftee.name} enjoyed their present.
+    - else
+      %p We hope everyone had a great time and nobody got stiffed on a present (I'm looking at you, Bob).
