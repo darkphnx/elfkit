@@ -9,8 +9,8 @@ class Exchange < ApplicationRecord
   before_validation :set_initial_stage
 
   validates :title, presence: true
-  validates :match_at, presence: true, future: true
-  validates :exchange_at, presence: true, future: true
+  validates :match_at, presence: true, future: true, if: :match_at_changed?
+  validates :exchange_at, presence: true, future: true, if: :exchange_at_changed?
   validates :stage, inclusion: { in: STAGES }
 
   def pair_participants
@@ -18,7 +18,8 @@ class Exchange < ApplicationRecord
       participant_matches.build(gifter: gifter, giftee: giftee)
     end
 
-    self.update_attribute(:stage, 'matched')
+    self.stage = 'matched'
+    save
   end
 
   STAGES.each do |status_name|
@@ -34,6 +35,6 @@ class Exchange < ApplicationRecord
   end
 
   def matchmaker
-    @matchmaker ||= Elfkit::Matchmaker.new(participants)
+    @matchmaker ||= Elfkit::Matchmaker.new(participants.participating)
   end
 end
