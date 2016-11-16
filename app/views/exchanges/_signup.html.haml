@@ -1,10 +1,16 @@
 - if logged_in?
-  %h2 Thanks for joining!
 
-  - if current_user.participating?
+  - if current_participant.participating?
+    %h2 Thanks for joining!
     %p You are participating in this exhange. To change your mind, just use the button below.
   - else
-    %p You are not participating in this exchange. To change your mind and join the fun, click the button below.
+    .row
+      .six.columns
+        %h2 Get involved!
+      .six.columns
+        %p You are <strong>not participating</strong> in this exchange. To change your mind and join the fun, click the button below.
+
+
 
 - else
   .row
