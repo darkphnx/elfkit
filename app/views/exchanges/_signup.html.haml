@@ -1,16 +1,23 @@
 - if logged_in?
 
   - if current_participant.participating?
-    %h2 Thanks for joining!
-    %p You are participating in this exhange. To change your mind, just use the button below.
+    .row
+      .six.columns
+        %h2 Thanks for joining!
+      .six.columns
+        %p
+          You are <strong>participating</strong> in this exhange. To change your mind, just use the button below.
+          You can do this any time before the matching date.
+        %p= button_to 'Leave the Exchange!', [@exchange, current_participant], method: :patch, params: { participant: { participating: false }}
   - else
     .row
       .six.columns
         %h2 Get involved!
       .six.columns
-        %p You are <strong>not participating</strong> in this exchange. To change your mind and join the fun, click the button below.
-
-
+        %p
+          You are <strong>not participating</strong> in this exchange. To change your mind and join the fun, click the button below.
+          You can do this any time before the matching date.
+        %p= button_to 'Join the Exchange!', [@exchange, current_participant], method: :patch, params: { participant: { participating: true }}
 
 - else
   .row
