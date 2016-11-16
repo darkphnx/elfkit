@@ -20,6 +20,7 @@ class ExchangesController < ApplicationController
     @exchange.participants << @first_participant
 
     if @exchange.save
+      self.current_participant = @first_participant
       redirect_to exchange_path(@exchange)
     else
       render :new
