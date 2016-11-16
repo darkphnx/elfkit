@@ -3,8 +3,8 @@ class Exchange < ApplicationRecord
 
   include RandomPermalink
 
-  has_many :participants
-  has_many :participant_matches
+  has_many :participants, dependent: :destroy
+  has_many :participant_matches, dependent: :destroy
 
   before_validation :set_initial_stage
 

@@ -2,7 +2,7 @@ class Participant < ApplicationRecord
   include RandomPermalink
 
   belongs_to :exchange
-  has_one :participant_match, foreign_key: :gifter_id
+  has_one :participant_match, foreign_key: :gifter_id, dependent: :destroy
   has_one :giftee, through: :participant_match
 
   validates :name, presence: true
