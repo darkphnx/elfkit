@@ -1,3 +1,26 @@
-%h2 Time until Gifting
-%p= distance_of_time_in_words_to_now @exchange.exchange_at
-%p= @exchange.exchange_at.to_s(:short)
+- if logged_in?
+  .row
+    .six.columns
+      %h2 Your giftee is:
+    .six.columns
+      .js-secret-box
+        .secret-box.js-secret-box--contents
+          = current_participant.giftee.name
+        = link_to 'Click to reveal match for 3s', '#', class: 'u-pull-right js-secret-box--reveal'
+- else
+  .row
+    .twelve.columns
+      %h2 Signups are closed!
+      %p
+        Sorry, all of the spaces have been filled for this exchange and matches have been made.
+        You need to be quicker off the mark next time!
+
+%hr
+
+.row
+  .six.columns
+    %h2 Time until gifting:
+  .six.columns
+    %h3= distance_of_time_in_words_to_now @exchange.exchange_at
+    %p
+      %em= @exchange.exchange_at.to_s(:long)

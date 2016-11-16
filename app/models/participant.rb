@@ -2,6 +2,8 @@ class Participant < ApplicationRecord
   include RandomPermalink
 
   belongs_to :exchange
+  has_one :participant_match, foreign_key: :gifter_id
+  has_one :giftee, through: :participant_match
 
   validates :name, presence: true
   validates :email_address, presence: true
@@ -12,7 +14,7 @@ class Participant < ApplicationRecord
   end
 
   scope :participating, -> { where(participating: true) }
- 
+
   def self.login(permalink, login_token)
     matches = where(permalink: permalink, login_token: login_token)
     matches.first
