@@ -27,6 +27,7 @@ class ExchangesController < ApplicationController
   end
 
   def show
+    @participants = @exchange.participants.participating
     @participant = @exchange.participants.build
   end
 

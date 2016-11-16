@@ -11,6 +11,8 @@ class Participant < ApplicationRecord
     self.login_token ||= SecureRandom.urlsafe_base64
   end
 
+  scope :participating, -> { where(participating: true) }
+ 
   def self.login(permalink, login_token)
     matches = where(permalink: permalink, login_token: login_token)
     matches.first

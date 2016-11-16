@@ -20,5 +20,8 @@
     %h2 Participants:
   .six.columns
     %ul
-      - @exchange.participants.each do |participant|
+      - @participants.each do |participant|
         %li= participant.name
+
+      - if @participants.empty?
+        %li No confirmed participants yet, be the first!
