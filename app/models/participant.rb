@@ -25,14 +25,18 @@ class Participant < ApplicationRecord
   end
 
   def send_confirmation_email
-    ParticipantMailer.confirm_participation(self).deliver
+    ParticipantMailer.confirm_participation(self).deliver_later
   end
 
   def send_match_ready_email
-    ParticipantMailer.match_ready(self).deliver
+    ParticipantMailer.match_ready(self).deliver_later
   end
 
   def send_exchange_reminder_email
-    ParticipantMailer.exchange_reminder(self).deliver
+    ParticipantMailer.exchange_reminder(self).deliver_later
+  end
+
+  def send_match_reminder_email
+    ParticipantMailer.match_reminder(self).deliver_later
   end
 end

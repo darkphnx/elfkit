@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115185403) do
+ActiveRecord::Schema.define(version: 20161117171701) do
 
   create_table "exchanges", force: :cascade do |t|
     t.string   "title"
     t.string   "permalink"
     t.datetime "match_at"
     t.datetime "exchange_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "stage"
+    t.datetime "match_reminder_sent_at"
+    t.datetime "exchange_reminder_sent_at"
   end
 
   create_table "participant_matches", force: :cascade do |t|
