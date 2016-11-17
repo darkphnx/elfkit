@@ -9,3 +9,7 @@ $ ->
   dates = $('.js-datepicker')
   dates.each (i, el)=>
     new Elfkit.DatePicker($(el));
+
+  countdowns = $('.js-countdown-timer')
+  countdowns.each (i, el)=>
+    new Elfkit.CountdownTimer($(el))

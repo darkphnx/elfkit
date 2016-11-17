@@ -21,6 +21,6 @@
   .six.columns
     %h2 Time until gifting:
   .six.columns
-    %h3= distance_of_time_in_words_to_now @exchange.exchange_at
+    %h3= countdown_timer @exchange.exchange_at
     %p
       %em= @exchange.exchange_at.to_s(:long)

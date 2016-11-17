@@ -52,9 +52,6 @@ GEM
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
-    dotiw (3.1.1)
-      actionpack (>= 3)
-      i18n
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -202,7 +199,6 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   database_cleaner
-  dotiw
   factory_girl_rails
   haml-rails
   jbuilder (~> 2.5)

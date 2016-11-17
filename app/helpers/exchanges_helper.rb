@@ -1,7 +1,6 @@
 module ExchangesHelper
   def countdown_timer(deadline)
-    return "Any minute now" if deadline.past?
-    distance_of_time_in_words(Time.now.utc, deadline, true)
+    content_tag(:span, '', data: { date: deadline.to_s(:iso8601) }, class: 'js-countdown-timer')
   end
 
   def datepicker_field(fieldname, selected_time)
