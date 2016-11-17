@@ -19,4 +19,20 @@ class Participant < ApplicationRecord
     matches = where(permalink: permalink, login_token: login_token)
     matches.first
   end
+
+  def email_tag
+    "#{name} <#{email_address}>"
+  end
+
+  def send_confirmation_email
+    ParticipantMailer.confirm_participation(self).deliver
+  end
+
+  def send_match_ready_email
+    ParticipantMailer.match_ready(self).deliver
+  end
+
+  def send_exchange_reminder_email
+    ParticipantMailer.exchange_reminder(self).deliver
+  end
 end

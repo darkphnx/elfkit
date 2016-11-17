@@ -19,7 +19,9 @@ class Exchange < ApplicationRecord
     end
 
     self.stage = 'matched'
-    save
+    save!
+
+    send_match_ready_emails
   end
 
   STAGES.each do |status_name|
@@ -29,6 +31,10 @@ class Exchange < ApplicationRecord
   end
 
   private
+
+  def send_match_ready_emails
+    participants.participating.each(&:send_match_ready_email)
+  end
 
   def set_initial_stage
     self.stage ||= 'signup'

@@ -1,0 +1,12 @@
+Hi <%= @participant.name %>,
+
+Great news, we've crunched the numbers and assigned you your giftee for <%= @exchange.title %>.
+
+To find out which lucky person you'll be giving your gift to, follow the link below and click on the name badge.
+
+<%= exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain) %>
+
+You've got until <%= @exchange.match_at.to_s(:long) %> to get your gift sorted!
+
+Thanks,
+Robot Secret Santa at Elfkit
