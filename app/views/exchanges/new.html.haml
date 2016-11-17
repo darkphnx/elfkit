@@ -19,10 +19,10 @@
 
   .row
     .five.columns.offset-by-one
-      = f.label :match_at
+      = label_tag :match_at_date, "Match participants at"
       = datepicker_field(:match_at, f.object.match_at)
     .five.columns
-      = f.label :exchange_at
+      = label_tag :exchange_at_date, "Exchange gifts at"
       = datepicker_field(:exchange_at, f.object.exchange_at)
 
   .row
