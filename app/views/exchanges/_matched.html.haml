@@ -3,10 +3,10 @@
     .six.columns
       %h2 Your giftee is:
     .six.columns
-      .js-secret-box
-        .secret-box.js-secret-box--contents
-          = current_participant.giftee.name
-        = link_to 'Click to reveal match for 3s', '#', class: 'u-pull-right js-secret-box--reveal'
+      %a.secret-box.js-secret-box{:href => '#'}
+        .secret-box--contents= current_participant.giftee.name
+        %span.secret-box--reveal Click to reveal match for 3s
+
 - else
   .row
     .ten.columns.offset-by-one

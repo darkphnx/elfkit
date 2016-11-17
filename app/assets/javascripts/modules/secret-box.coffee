@@ -1,23 +1,23 @@
 class SecretBox
   constructor: (el)->
-    @contents = el.find('.js-secret-box--contents')
-    @link = el.find('.js-secret-box--reveal')
+    @box = el
 
     @_bindEvents()
 
   _bindEvents: =>
-    @link.on 'click', @_revealClicked
+    @box.on 'click', @_revealClicked
 
   _revealClicked: (e)=>
     e.preventDefault()
 
+    clearTimeout(@timer) if @timer?
     @revealContents(2500)
 
   revealContents: (duration)=>
-    @contents.addClass('is-selected')
-    setTimeout(@hideContents, duration)
+    @box.addClass('is-selected')
+    @timer = setTimeout(@hideContents, duration)
 
   hideContents: =>
-    @contents.removeClass('is-selected')
+    @box.removeClass('is-selected')
 
 window.Elfkit.SecretBox = SecretBox

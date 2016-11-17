@@ -4,11 +4,12 @@
 
 $ ->
   secretBox = $('.js-secret-box')
-  new Elfkit.SecretBox(secretBox) if secretBox.length
+  secretBox.each (i, el)=>
+    new Elfkit.SecretBox($(el))
 
   dates = $('.js-datepicker')
   dates.each (i, el)=>
-    new Elfkit.DatePicker($(el));
+    new Elfkit.DatePicker($(el))
 
   countdowns = $('.js-countdown-timer')
   countdowns.each (i, el)=>
