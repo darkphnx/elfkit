@@ -1,0 +1,13 @@
+%p Hi #{@participant.name},
+
+%p Thanks for registering your interest in #{@exchange.title}.
+
+%p In order to complete your signup for this exchange, we need you to click the link below to confirm your participation. This link is specific to you, so don't share it with anyone.
+
+%p
+  - link = exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain)
+  = link_to(link, link, style: "color: #c80008;")
+
+%p If at any time you change your mind about participating prior to the match date, you can use the link above to revoke your participation.
+
+%p We'll be matching gifter and giftees on #{@exchange.match_at.to_s(:long)}.

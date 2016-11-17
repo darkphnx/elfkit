@@ -7,6 +7,3 @@ Don't forget to get a gift for your giftee, if you've forgotten who that is, you
 <%= exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain) %>
 
 Your exchange will be happening at <%= @exchange.exchange_at.to_s(:long) %>
-
-Thanks,
-Robot Secret Santa at Elfkit

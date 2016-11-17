@@ -1,0 +1,11 @@
+%p Hi #{@participant.name},
+
+%p Just a quick reminder to let you know we'll be matching gifter and giftees for #{@exchange.title} in just under a week.
+
+%p If you can no longer participate, please click the link below and press the "Leave the Exhcange!" button.
+
+%p
+  - link = exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain) 
+  = link_to(link, link, style: "color: #c80008;")
+
+%p We'll be matching gifter and giftees on #{@exchange.match_at.to_s(:long)}.

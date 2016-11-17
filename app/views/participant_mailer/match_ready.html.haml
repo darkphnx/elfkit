@@ -1,0 +1,11 @@
+%p Hi #{@participant.name},
+
+%p Great news, we've crunched the numbers and assigned you your giftee for #{@exchange.title}.
+
+%p To find out which lucky person you'll be giving your gift to, follow the link below and click on the name badge.
+
+%p
+  - link = exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain)
+  = link_to(link, link, style: "color: #c80008;")
+
+%p You've got until #{@exchange.match_at.to_s(:long)} to get your gift sorted!
