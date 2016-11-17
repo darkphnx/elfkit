@@ -32,6 +32,8 @@ a {
 hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
+  height: 1rem;
   border-width: 0;
-  border-top: 1px solid $light-grey;
+  background: image-url("hr.svg") repeat-x 0 0;
+  background-size: auto 1rem;
 }
