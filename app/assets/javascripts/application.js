@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require elfkit
+//= require vendor/moment
+//= require vendor/pikaday
 //= require_tree .

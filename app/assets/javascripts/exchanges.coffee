@@ -5,3 +5,7 @@
 $ ->
   secretBox = $('.js-secret-box')
   new Elfkit.SecretBox(secretBox) if secretBox.length
+
+  dates = $('.js-datepicker')
+  dates.each (i, el)=>
+    new Elfkit.DatePicker($(el));
