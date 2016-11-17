@@ -1,30 +1,30 @@
-%h1 Start your own gift exchange!
+.row
+  .ten.columns.offset-by-one
+    %h1 Start your own gift exchange!
 
 .row
-  .ten.columns
+  .ten.columns.offset-by-one
     %p
       To start an exchange just enter your details below. You'll receive an email to confirm your participation.
       You'll be given a URL you can share with your friends and family so that they can signup to your exchange.
 
 = form_for @exchange do |f|
   .row
-    .ten.columns= f.text_field :title, placeholder: "Exchange name", class: 'u-full-width'
+    .ten.columns.offset-by-one= f.text_field :title, placeholder: "Exchange name", class: 'u-full-width'
 
   = f.fields_for @first_participant do |g|
     .row
-      .five.columns= g.text_field :name, placeholder: 'Your name', class: 'u-full-width'
+      .five.columns.offset-by-one= g.text_field :name, placeholder: 'Your name', class: 'u-full-width'
       .five.columns= g.email_field :email_address, placeholder: 'Your e-mail address', class: 'u-full-width'
 
   .row
-    .ten.columns
+    .five.columns.offset-by-one
       = f.label :match_at
-      = f.datetime_select :match_at
-
-  .row
-    .ten.columns
+      = datepicker_field(:match_at, f.object.match_at)
+    .five.columns
       = f.label :exchange_at
-      = f.datetime_select :exchange_at
+      = datepicker_field(:exchange_at, f.object.exchange_at)
 
   .row
-    .ten.columns
+    .ten.columns.offset-by-one
       = f.submit "Start the fun!", class: "button-primary u-pull-right"

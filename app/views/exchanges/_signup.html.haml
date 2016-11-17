@@ -21,20 +21,17 @@
 
 - else
   .row
-    .one.column &nbsp;
-    .ten.columns
+    .ten.columns.offset-by-one
       %h2 Register your interest in this exchange:
 
   = form_for [@exchange, @participant] do |f|
     .row
-      .one.column &nbsp;
-      .five.columns= f.text_field :name, placeholder: "Name", class: 'u-full-width'
+      .five.columns.offset-by-one= f.text_field :name, placeholder: "Name", class: 'u-full-width'
       .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'
     .row
-      .eleven.columns= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
+      .ten.columns.offset-by-one= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
     .row
-      .one.columns &nbsp;
-      .ten.columns
+      .ten.columns.offset-by-one
         %p
           After entering your details you'll receive an email which you should use to confirm your participation. You may
           withdraw your participation any time before the matching date.
