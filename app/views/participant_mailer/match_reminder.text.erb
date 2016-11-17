@@ -1,0 +1,12 @@
+Hi <%= @participant.name %>,
+
+Just a quick reminder to let you know we'll be matching gifter and giftees for <%= @exchange.name %> in just under a week.
+
+If you can no longer participate, please click the link below and press the "Leave the Exhcange!" button.
+
+<%= exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain) %>
+
+We'll be matching gifter and giftees on <%= @exchange.match_at.to_s(:long) %>.
+
+Thanks,
+Robot Secret Santa at Elfkit
