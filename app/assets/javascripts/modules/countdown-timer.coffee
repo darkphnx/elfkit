@@ -14,7 +14,6 @@ class CountdownTimer
 
   _timeDifference: =>
     difference = @startDate.diff(moment())
-    console.log difference
     if difference < 0
       "Any second now!"
     else
