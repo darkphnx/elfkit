@@ -1,0 +1,13 @@
+.footer {
+  height: 100px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: image-url("footer.svg");
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: auto 100px;
+}

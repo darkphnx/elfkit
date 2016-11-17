@@ -11,6 +11,16 @@
   box-sizing: border-box;
 }
 
+.u-one-third-width {
+  width: calc(33% - 0.125rem);
+  box-sizing: border-box;
+}
+
+.u-two-thirds-width {
+  width: calc(66% - 0.125rem);
+  box-sizing: border-box;
+}
+
 .u-pull-right {
   float: right;
 }

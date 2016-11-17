@@ -6,6 +6,8 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,6 +16,11 @@ body {
   font-weight: 400;
   font-family: $font-family;
   color: $font-color;
+  position: relative;
+  margin: 0;
+  padding-bottom: 130px;
+  min-height: 100%;
+  background-color: #fae8e4;
 }
 
 // Links
@@ -37,3 +44,10 @@ hr {
   background: image-url("hr.svg") repeat-x 0 0;
   background-size: auto 1rem;
 }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
