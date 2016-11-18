@@ -21,9 +21,11 @@
   .six.columns
     %h2 Participants:
   .six.columns
-    %ul
+    %ul.styled-list
       - @participants.each do |participant|
-        %li= participant.name
+        %li
+          %h5= participant.name
 
       - if @participants.empty?
-        %li No confirmed participants yet, be the first!
+        %li
+          %h5 No confirmed participants yet, be the first!
