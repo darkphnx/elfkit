@@ -1,6 +1,6 @@
 %p Hi #{@participant.name},
 
-%p Exciting times! It's just under a week until you exchange gifts for #{@exchange.title}.
+%p Exciting times! It's <b>just under a week</b> until you exchange gifts for <b>#{@exchange.title}</b>.
 
 %p Don't forget to get a gift for your giftee, if you've forgotten who that is, you can find out by clicking the link below.
 
@@ -8,4 +8,4 @@
   - link = exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain)
   = link_to(link, link, style: "color: #c80008;")
 
-%p Your exchange will be happening at #{@exchange.exchange_at.to_s(:long)}
+%p Your exchange will be happening at <b>#{@exchange.exchange_at.to_s(:long)}</b>.
