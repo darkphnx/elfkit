@@ -24,17 +24,24 @@
     .ten.columns.offset-by-one
       %h2 Register your interest in this exchange:
 
-  = form_for [@exchange, @participant] do |f|
-    .row
-      .five.columns.offset-by-one= f.text_field :name, placeholder: "Name", class: 'u-full-width'
-      .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'
-    .row
-      .ten.columns.offset-by-one= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
+  - if params[:invited]
     .row
       .ten.columns.offset-by-one
         %p
-          After entering your details you'll receive an email which you should use to confirm your participation. You may
-          withdraw your participation any time before the matching date.
+          Thanks! We've sent an email to <strong>#{@participant.email_address}</strong> which contains a link that you
+          must click on in order to confirm your participation.
+  - else
+    = form_for [@exchange, @participant] do |f|
+      .row
+        .five.columns.offset-by-one= f.text_field :name, placeholder: "Name", class: 'u-full-width'
+        .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'
+      .row
+        .ten.columns.offset-by-one= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
+      .row
+        .ten.columns.offset-by-one
+          %p
+            After entering your details you'll receive an email which you should use to confirm your participation. You may
+            withdraw your participation any time before the matching date.
 
 %hr
 
@@ -44,4 +51,6 @@
   .six.columns
     %h3= countdown_timer @exchange.match_at
     %p
-      %em= @exchange.match_at.to_s(:long)
+      %em
+        = @exchange.match_at.to_s(:long)
+        (#{current_tz_info})

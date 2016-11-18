@@ -14,10 +14,10 @@ class ParticipantsController < ApplicationController
     @participant = @exchange.participants.build(safe_create_participant_params)
 
     if @participant.save
-      @participant.send_confirmation_email
-      redirect_to exchange_path(@exchange), notice: "Invite sent, please check your e-mail"
+      redirect_to exchange_path(@exchange, invited: @participant.permalink)
     else
-      redirect_to exchange_path(@exchange), alert: "Sorry, couldn't send invite"
+      redirect_to exchange_path(@exchange), alert: "Sorry, couldn't send invite. Please check your name or " \
+        "e-mail address."
     end
   end
 
