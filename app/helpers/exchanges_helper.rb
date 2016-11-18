@@ -3,6 +3,10 @@ module ExchangesHelper
     content_tag(:span, '', data: { date: deadline.to_s(:iso8601) }, class: 'js-countdown-timer')
   end
 
+  def current_tz_info
+    "#{Time.zone.name} #{Time.zone.formatted_offset}"
+  end
+
   def datepicker_field(objectname, fieldname, selected_time)
     selected_time = selected_time.beginning_of_hour
 

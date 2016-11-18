@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118124400) do
+ActiveRecord::Schema.define(version: 20161118142730) do
 
   create_table "exchanges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161118124400) do
     t.string   "stage"
     t.datetime "match_reminder_sent_at"
     t.datetime "exchange_reminder_sent_at"
+    t.string   "time_zone"
   end
 
   create_table "participant_matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

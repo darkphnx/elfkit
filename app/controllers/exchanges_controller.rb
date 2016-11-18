@@ -3,9 +3,7 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.find_by_permalink!(params[:id]) if params[:id]
   end
 
-  def index
-    @exchanges = Exchange.all
-  end
+  around_action :use_exchange_timestamp
 
   def new
     @exchange = Exchange.new(match_at: 2.weeks.from_now, exchange_at: 4.weeks.from_now)
@@ -28,7 +26,12 @@ class ExchangesController < ApplicationController
 
   def show
     @participants = @exchange.participants.participating
-    @participant = @exchange.participants.build
+
+    if params[:invited]
+      @participant = @exchange.participants.find_by_permalink(params[:invited])
+    else
+      @participant = @exchange.participants.build
+    end
   end
 
   def edit
@@ -44,8 +47,23 @@ class ExchangesController < ApplicationController
 
   private
 
+  def use_exchange_timestamp
+    Time.zone = request_time_zone
+    yield
+  ensure
+    Time.zone = nil
+  end
+
+  def request_time_zone
+    if params[:exchange] && params[:exchange][:time_zone]
+      params[:exchange][:time_zone]
+    elsif @exchange
+      @exchange.time_zone
+    end
+  end
+
   def safe_exchange_params
-    params.require(:exchange).permit(:title, :match_at, :exchange_at)
+    params.require(:exchange).permit(:title, :match_at, :exchange_at, :time_zone)
   end
 
   def safe_participant_params

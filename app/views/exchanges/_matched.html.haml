@@ -23,4 +23,6 @@
   .six.columns
     %h3= countdown_timer @exchange.exchange_at
     %p
-      %em= @exchange.exchange_at.to_s(:long)
+      %em
+        = @exchange.exchange_at.to_s(:long)
+        (#{current_tz_info})
