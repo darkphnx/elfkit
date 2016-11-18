@@ -18,7 +18,7 @@ class ExchangesController < ApplicationController
     @exchange.participants << @first_participant
 
     if @exchange.save
-      redirect_to exchange_path(@exchange)
+      redirect_to exchange_path(@exchange, invited: @first_participant.permalink)
     else
       render :new
     end
