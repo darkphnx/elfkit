@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails'
 # Scheduled tasks
 gem 'clockwork'
+# Send email
+gem 'appmail-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

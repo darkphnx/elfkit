@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Secret Santa <santa@elfk.it>'
+  default from: 'Robot Secret Santa at Elfkit <santa@elfk.it>'
   layout 'mailer'
 end
