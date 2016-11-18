@@ -4,6 +4,6 @@ Exciting times! It's just under a week until you exchange gifts for <%= @exchang
 
 Don't forget to get a gift for your giftee, if you've forgotten who that is, you can find out by clicking the link below.
 
-<%= exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :host => Elfkit::Application.config.protocol, :domain => Elfkit::Application.config.domain) %>
+<%= exchange_participant_retrieve_url(@exchange, @participant, @participant.login_token, :protocol => Elfkit::Application.config.protocol, :host => Elfkit::Application.config.domain) %>
 
 Your exchange will be happening at <%= @exchange.exchange_at.to_s(:long) %>

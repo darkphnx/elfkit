@@ -84,7 +84,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.domain = 'elfk.it'
+  config.domain = 'www.elfk.it'
   config.protocol = 'https'
 
   config.action_mailer.delivery_method = :appmail
