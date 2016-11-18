@@ -32,6 +32,8 @@ class Exchange < ApplicationRecord
     pair_participants
     self.stage = 'matched'
     save!
+
+    send_match_ready_emails
   end
 
   def complete!
