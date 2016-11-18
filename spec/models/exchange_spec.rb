@@ -127,7 +127,7 @@ RSpec.describe Exchange, type: :model do
     end
   end
 
-  describe '#pair_participants!' do
+  describe '#pair_participants' do
     before(:each) do
       @exchange = create(:exchange)
       @participants = create_list(:participant, 3, participating: true, exchange: @exchange)
@@ -156,9 +156,42 @@ RSpec.describe Exchange, type: :model do
       expect(giftees).to_not include(@non_participant)
       expect(gifters).to_not include(@non_participant)
     end
+  end
+
+  describe 'match!' do
+    before(:each) do
+      @exchange = create(:exchange, stage: 'signup')
+    end
+
+    it 'pairs the participants' do
+      expect(@exchange).to receive(:pair_participants)
+      @exchange.match!
+    end
 
     it 'marks the stage as matched' do
+      @exchange.match!
       expect(@exchange.stage).to eq('matched')
+    end
+
+    it 'saves the record' do
+      expect(@exchange).to receive(:save!)
+      @exchange.match!
+    end
+  end
+
+  describe 'complete!' do
+    before(:each) do
+      @exchange = create(:exchange, stage: 'matched')
+    end
+
+    it 'marks the stage as matched' do
+      @exchange.complete!
+      expect(@exchange.stage).to eq('completed')
+    end
+
+    it 'saves the record' do
+      expect(@exchange).to receive(:save!)
+      @exchange.complete!
     end
   end
 end

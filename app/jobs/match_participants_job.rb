@@ -1,5 +1,5 @@
 class MatchParticipantsJob < ApplicationJob
   def perform
-    Exchange.require_matching.each(&:pair_participants!)
+    Exchange.require_matching.each(&:match!)
   end
 end

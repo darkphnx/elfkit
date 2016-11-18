@@ -26,8 +26,12 @@ class Exchange < ApplicationRecord
     matchmaker.pair.each do |gifter, giftee|
       participant_matches.build(gifter: gifter, giftee: giftee)
     end
+  end
 
+  def match!
+    pair_participants
     self.stage = 'matched'
+    save!
   end
 
   def complete!
