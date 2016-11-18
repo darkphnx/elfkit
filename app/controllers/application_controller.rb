@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_participant
     @current_participant ||= begin
-      if @exchange && session[:participants]
+      if @exchange && session[:participants] && session[:participants][@exchange.permalink]
         participant = Participant.find_by_login_token!(session[:participants][@exchange.permalink])
         participant.activity!
         participant
