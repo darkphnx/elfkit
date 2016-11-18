@@ -1,3 +1,5 @@
 %ul
   - @exchanges.each do |exchange|
     %li= link_to exchange.title, exchange_path(exchange)
+
+= link_to "Create your own exchange today!", new_exchange_path, class: 'button button-primary'
