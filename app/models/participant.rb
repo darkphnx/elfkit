@@ -13,11 +13,21 @@ class Participant < ApplicationRecord
     self.login_token ||= SecureRandom.urlsafe_base64
   end
 
+  after_create :send_confirmation_email
+
   scope :participating, -> { where(participating: true) }
 
   def self.login(permalink, login_token)
     matches = where(permalink: permalink, login_token: login_token)
     matches.first
+  end
+
+  def activity!
+    # First time we have recorded activity for this participant, set them as participating
+    self.participating = true if last_activity_at.nil?
+
+    self.last_activity_at = Time.now.utc
+    save(validate: false)
   end
 
   def email_tag

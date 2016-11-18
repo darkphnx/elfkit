@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117171701) do
+ActiveRecord::Schema.define(version: 20161118124400) do
 
   create_table "exchanges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "title"
@@ -41,10 +41,11 @@ ActiveRecord::Schema.define(version: 20161117171701) do
     t.string   "email_address"
     t.string   "permalink"
     t.string   "login_token"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.boolean  "admin"
     t.boolean  "participating"
+    t.datetime "last_activity_at"
     t.index ["exchange_id"], name: "index_participants_on_exchange_id", using: :btree
   end
 
