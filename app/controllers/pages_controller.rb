@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  def index
-    render text: "hello"
+  def home
   end
 end

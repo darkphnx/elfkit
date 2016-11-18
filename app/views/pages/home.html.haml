@@ -1,0 +1,30 @@
+.row
+  .twelve.columns.u-text-center
+    %h1 Presenting <strong>Elfkit</strong>,
+    %h2.light Gift Exhange Made Easy
+
+%hr
+
+.row
+  .six.columns
+    %h5
+      <strong>No longer</strong> do you need to tear up small pieces of paper. <strong>Free yourself</strong> from the
+      tyranny of putting your hand in someone elses sweaty hat. <strong>Throw off the shackles</strong> of picking your
+      own name and starting all over again.
+
+    %h5
+      Manage your secret santa (or any other non-festive themed gift exchange) with <strong>Elfkit</strong> and
+      <strong>never suffer again</strong>.
+
+  .six.columns
+    %h3 Join #{Participant.count} happy gifters &mdash; manage your next exchange with Elfkit.
+    %p= link_to "Create your own exchange today!", new_exchange_path, class: 'button button-primary'
+
+%hr
+
+.row
+  .twelve.columns.u-text-center
+    Hosting sponsored by
+    #{link_to "Viaduct", "https://viaduct.io"},
+    E-mail delivery sponsored by
+    #{link_to "AppMail", "https://appmail.io"}.
