@@ -19,18 +19,15 @@ class Exchange < ApplicationRecord
     where('match_at < ? AND match_reminder_sent_at IS NULL', Time.now.utc + 7.days)
   }
   scope :require_exchange_reminder_sending, lambda {
-    where('match_at < ? AND exchange_reminder_sent_at IS NULL', Time.now.utc + 7.days)
+    where('exchange_at < ? AND exchange_reminder_sent_at IS NULL', Time.now.utc + 7.days)
   }
 
-  def pair_participants!
+  def pair_participants
     matchmaker.pair.each do |gifter, giftee|
       participant_matches.build(gifter: gifter, giftee: giftee)
     end
 
     self.stage = 'matched'
-    save!
-
-    send_match_ready_emails
   end
 
   def complete!
