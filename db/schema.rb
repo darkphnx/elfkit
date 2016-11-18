@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161117171701) do
 
-  create_table "exchanges", force: :cascade do |t|
+  create_table "exchanges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "title"
     t.string   "permalink"
     t.datetime "match_at"
@@ -24,18 +24,18 @@ ActiveRecord::Schema.define(version: 20161117171701) do
     t.datetime "exchange_reminder_sent_at"
   end
 
-  create_table "participant_matches", force: :cascade do |t|
+  create_table "participant_matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "exchange_id"
     t.integer  "gifter_id"
     t.integer  "giftee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["exchange_id"], name: "index_participant_matches_on_exchange_id"
-    t.index ["giftee_id"], name: "index_participant_matches_on_giftee_id"
-    t.index ["gifter_id"], name: "index_participant_matches_on_gifter_id"
+    t.index ["exchange_id"], name: "index_participant_matches_on_exchange_id", using: :btree
+    t.index ["giftee_id"], name: "index_participant_matches_on_giftee_id", using: :btree
+    t.index ["gifter_id"], name: "index_participant_matches_on_gifter_id", using: :btree
   end
 
-  create_table "participants", force: :cascade do |t|
+  create_table "participants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "exchange_id"
     t.string   "name"
     t.string   "email_address"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20161117171701) do
     t.string   "login_token"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.         "admin"
+    t.boolean  "admin"
     t.boolean  "participating"
-    t.index ["exchange_id"], name: "index_participants_on_exchange_id"
+    t.index ["exchange_id"], name: "index_participants_on_exchange_id", using: :btree
   end
 
 end
