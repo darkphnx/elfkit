@@ -16,10 +16,10 @@ class Exchange < ApplicationRecord
   scope :require_matching, -> { where('match_at <= ? AND stage = ?', Time.now.utc, 'signup') }
   scope :require_completing, -> { where('exchange_at <= ? AND stage = ?', Time.now.utc, 'matched') }
   scope :require_match_reminder_sending, lambda {
-    where('match_at < ? AND match_reminder_sent_at IS NULL', Time.now.utc + 7.days)
+    where('match_at <= ? AND match_reminder_sent_at IS NULL', Time.now.utc + 7.days)
   }
   scope :require_exchange_reminder_sending, lambda {
-    where('exchange_at < ? AND exchange_reminder_sent_at IS NULL', Time.now.utc + 7.days)
+    where('exchange_at <= ? AND exchange_reminder_sent_at IS NULL', Time.now.utc + 7.days)
   }
 
   def pair_participants

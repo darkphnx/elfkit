@@ -78,7 +78,7 @@ RSpec.describe Exchange, type: :model do
       @future = [create(:exchange, match_at: 2.weeks.from_now)]
     end
 
-    it 'matches exchanges that are matching 1 week from now (within a day)' do
+    it 'matches exchanges that are matching less than 1 week from now' do
       expect(described_class.require_match_reminder_sending).to include(*@to_remind)
     end
 
@@ -98,7 +98,7 @@ RSpec.describe Exchange, type: :model do
       @future = [create(:exchange, exchange_at: 2.weeks.from_now)]
     end
 
-    it 'matches exchanges that are exchanging 1 week from now (within a day)' do
+    it 'matches exchanges that are exchanging less than 1 week from now' do
       expect(described_class.require_exchange_reminder_sending).to include(*@to_remind)
     end
 
