@@ -8,6 +8,14 @@ module ApplicationHelper
     end
   end
 
+  def display_flash
+    flashes = flash.map do |type, message|
+      content_tag(:div, message, class: "flash flash--#{type}")
+    end
+
+    safe_join(flashes, "\n")
+  end
+
   def errors_for(object)
     return unless object.errors.any?
 
