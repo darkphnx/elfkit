@@ -12,6 +12,10 @@
 
 = form_for @exchange do |f|
   .row
+    .ten.columns.offset-by-one
+      = errors_for(f.object)
+
+  .row
     .ten.columns.offset-by-one= f.text_field :title, placeholder: "Exchange name", class: 'u-full-width'
 
   = f.fields_for @first_participant do |g|
@@ -22,10 +26,10 @@
   .row
     .five.columns.offset-by-one
       = label_tag :match_at_date, "Match participants at"
-      = datepicker_field(:match_at, f.object.match_at)
+      = datepicker_field('exchange', 'match_at', f.object.match_at)
     .five.columns
       = label_tag :exchange_at_date, "Exchange gifts at"
-      = datepicker_field(:exchange_at, f.object.exchange_at)
+      = datepicker_field('exchange', 'exchange_at', f.object.exchange_at)
 
   .row
     .ten.columns.offset-by-one

@@ -3,14 +3,14 @@ module ExchangesHelper
     content_tag(:span, '', data: { date: deadline.to_s(:iso8601) }, class: 'js-countdown-timer')
   end
 
-  def datepicker_field(fieldname, selected_time)
+  def datepicker_field(objectname, fieldname, selected_time)
     selected_time = selected_time.beginning_of_hour
 
     content_tag(:div, class: 'js-datepicker', data: { date: selected_time.to_s(:iso8601) }) do
       components = [].tap do |s|
         s << dateselect_field(fieldname, selected_time)
         s << timeselect_field(fieldname, selected_time)
-        s << datepicker_hidden_fields(fieldname, selected_time)
+        s << datepicker_hidden_fields(objectname, fieldname, selected_time)
       end
 
       safe_join(components, " ")
@@ -28,9 +28,9 @@ module ExchangesHelper
       class: 'u-one-third-width js-datepicker--time'
   end
 
-  def datepicker_hidden_fields(fieldname, selected_time)
+  def datepicker_hidden_fields(objectname, fieldname, selected_time)
     parts = [:year, :month, :day, :hour, :min].each_with_index.map do |time_part, i|
-      hidden_field_tag("#{fieldname}(#{i}i)", selected_time.send(time_part),
+      hidden_field_tag("#{objectname}[#{fieldname}(#{i}i)]", selected_time.send(time_part),
         class: "js-datepicker--hidden js-datepicker--#{time_part}")
     end
 
