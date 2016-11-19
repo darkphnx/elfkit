@@ -6,7 +6,8 @@ class Participant < ApplicationRecord
   has_one :giftee, through: :participant_match
 
   validates :name, presence: true
-  validates :email_address, presence: true
+  validates :email_address, presence: true, uniqueness: { scope: :exchange_id, 
+    message: "is already signed up to this exchange" }
   validates :login_token, presence: true
 
   before_validation do
