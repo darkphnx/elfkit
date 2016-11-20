@@ -1,5 +1,9 @@
 - title @exchange.title
 
+- meta 'og:url', exchange_url(@exchange)
+- meta 'og:title', title
+- meta 'og:description', "Join the #{@exchange.title} gift exchange on elfk.it"
+
 .row
   .twelve.columns
     %h1= @exchange.title
