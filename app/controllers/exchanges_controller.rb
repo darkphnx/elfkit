@@ -3,6 +3,13 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.find_by_permalink!(params[:id]) if params[:id]
   end
 
+  before_action only: [:edit, :update, :destroy] do
+    unless logged_in? && current_participant.admin?
+      redirect_to exchange_path(@exchange), alert: "You need to be logged in and be the exchange creator to edit. " \
+        "Use the login link in your signup email if you are the creator."
+    end
+  end
+
   around_action :use_exchange_timestamp
 
   def new
@@ -42,6 +49,15 @@ class ExchangesController < ApplicationController
       redirect_to exchange_path(@exchange)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @exchange.destroy
+      redirect_to root_path, notice: "Your exchange has been cancelled and your participants notified."
+    else
+      redirect_to exchange_path(@exchange), alert: "Sorry, we couldn't delete your exchange. " \
+        "Please try again later."
     end
   end
 

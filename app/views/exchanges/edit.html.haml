@@ -1,6 +1,17 @@
-%h1 Edit #{@exchange.title}
+- title "Update your gift exchange"
+
+.row
+  .ten.columns.offset-by-one
+    %h1 Update your gift exchange
 
 = form_for @exchange do |f|
-  = render 'form', f: f
+  .row
+    .ten.columns.offset-by-one
+      = f.label :title, "Exchange name"
+      = f.text_field :title, placeholder: "Exchange name", class: 'u-full-width'
 
-  = f.submit
+  = render 'times_form', f: f
+
+  .row
+    .ten.columns.offset-by-one
+      = f.submit "Update exchange", class: 'button-primary u-pull-right'

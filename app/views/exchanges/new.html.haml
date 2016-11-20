@@ -27,17 +27,7 @@
     .ten.columns.offset-by-one
       %hr
 
-  .row
-    .five.columns.offset-by-one
-      = label_tag :match_at_date, "Match participants at"
-      = datepicker_field('exchange', 'match_at', f.object.match_at)
-    .five.columns
-      = label_tag :exchange_at_date, "Exchange gifts at"
-      = datepicker_field('exchange', 'exchange_at', f.object.exchange_at)
-
-  .row
-    .ten.columns.offset-by-one
-      = f.time_zone_select :time_zone, nil, { default: 'London' }, class: 'u-full-width'
+  = render 'times_form', f: f
 
   .row
     .ten.columns.offset-by-one

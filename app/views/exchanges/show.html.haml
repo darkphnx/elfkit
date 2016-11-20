@@ -29,3 +29,16 @@
       - if @participants.empty?
         %li
           %h5 No confirmed participants yet, be the first!
+
+- if logged_in? && current_participant.admin?
+  %hr
+
+  .row
+    .six.columns
+      %h2 Update exchange:
+    .six.columns
+      %p 
+        As the creator of this exchange you can update the properties of this exchange, or cancel it altogether.
+      %p
+        = link_to "Update exchange", edit_exchange_path(@exchange), class: 'button' 
+        = link_to "Cancel exchange", exchange_path(@exchange), data: { confirm: "Are you sure you wish to cancel this exchange? This cannot be undone.", method: :delete }, class: 'button'
