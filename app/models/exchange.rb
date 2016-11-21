@@ -64,6 +64,14 @@ class Exchange < ApplicationRecord
 
   private
 
+  def match_at_changed?
+    super || time_zone_changed?
+  end
+
+  def exchange_at_changed?
+    super || time_zone_changed?
+  end
+
   def validate_match_at_date
     errors.add(:match_at, "must be before the exchange date") if (match_at && exchange_at) && (match_at >= exchange_at)
   end
