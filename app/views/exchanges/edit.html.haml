@@ -7,6 +7,10 @@
 = form_for @exchange do |f|
   .row
     .ten.columns.offset-by-one
+      = errors_for(f.object)
+
+  .row
+    .ten.columns.offset-by-one
       = f.label :title, "Exchange name"
       = f.text_field :title, placeholder: "Exchange name", class: 'u-full-width'
 
