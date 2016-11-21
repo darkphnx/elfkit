@@ -8,7 +8,7 @@ class Participant < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :exchange_id, message: "is already used by someone else in " \
     "this exchange, please add some differentiator such as a second initial." }
   validates :email_address, presence: true, uniqueness: { scope: :exchange_id, message: "is already signed up to " \
-    "this exchange" }
+    "this exchange" }, format: /.+\@.+\..+/
   validates :login_token, presence: true
 
   before_validation do
