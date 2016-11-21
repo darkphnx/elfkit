@@ -36,9 +36,10 @@
         .five.columns.offset-by-one= f.text_field :name, placeholder: "Name", class: 'u-full-width'
         .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'
       .row
-        .ten.columns.offset-by-one= f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
-      .row
         .ten.columns.offset-by-one
+          = f.submit 'Join the Fun!', class: 'u-pull-right button-primary'
+          %p
+            Signups are open until matches are made at #{@exchange.match_at.to_s(:long)} (#{current_tz_info})
           %p
             After entering your details you'll receive an email which you should use to confirm your participation. You may
             withdraw your participation any time before the matching date.
