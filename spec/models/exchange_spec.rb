@@ -21,6 +21,17 @@ RSpec.describe Exchange, type: :model do
 
       expect(exchange.errors[:exchange_at]).to include("can't be in the past")
     end
+
+    it 'check the match_at date is before exchange_at' do
+      exchange = described_class.new(exchange_at: Time.now.utc, match_at: Time.now.utc + 1.day)
+      exchange.valid?
+
+      expect(exchange.errors[:match_at]).to include("must be before the exchange date")
+    end
+
+    it "doesn't allow the match_date to be altered after matching" do
+
+    end
   end
 
   describe '.require_matching' do
@@ -50,12 +61,12 @@ RSpec.describe Exchange, type: :model do
   describe '.require_completing' do
     before(:each) do
       # Records need to be created in the past, or the validation fails
-      travel_to(2.hours.ago)
-      @unprocessed = [create(:exchange, exchange_at: 1.minute.from_now, stage: 'matched'),
-                      create(:exchange, exchange_at: 2.hours.from_now, stage: 'matched')]
-      @processed = [create(:exchange, exchange_at: 1.minute.from_now, stage: 'completed')]
+      travel_to(4.hours.ago)
+      @processed = [create(:exchange, exchange_at: 90.minutes.from_now, stage: 'completed')]
+      @unprocessed = [create(:exchange, exchange_at: 2.hours.from_now, stage: 'matched'),
+                      create(:exchange, exchange_at: 3.hours.from_now, stage: 'matched')]
       travel_back
-      @future = [create(:exchange, exchange_at: 1.hour.from_now, stage: 'matched')]
+      @future = [create(:exchange, exchange_at: 3.hours.from_now, stage: 'matched')]
     end
 
     it "returns exchanges that need completing, bit haven't been processed yet" do
@@ -75,7 +86,7 @@ RSpec.describe Exchange, type: :model do
     before(:each) do
       @to_remind = [create(:exchange, match_at: 1.week.from_now), create(:exchange, match_at: 6.days.from_now)]
       @reminded = [create(:exchange, match_at: 1.week.from_now, match_reminder_sent_at: Time.now.utc)]
-      @future = [create(:exchange, match_at: 2.weeks.from_now)]
+      @future = [create(:exchange, match_at: 2.weeks.from_now, exchange_at: 1.month.from_now)]
     end
 
     it 'matches exchanges that are matching less than 1 week from now' do

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :exchange do
     title "Bob's Secret Santa"
-    match_at { 1.week.from_now }
+    match_at { 1.hour.from_now }
     exchange_at { 2.weeks.from_now }
   end
 

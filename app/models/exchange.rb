@@ -13,6 +13,8 @@ class Exchange < ApplicationRecord
   validates :exchange_at, presence: true, future: true, if: :exchange_at_changed?
   validates :stage, inclusion: { in: STAGES }
 
+  validate :validate_match_at
+
   scope :require_matching, -> { where('match_at <= ? AND stage = ?', Time.now.utc, 'signup') }
   scope :require_completing, -> { where('exchange_at <= ? AND stage = ?', Time.now.utc, 'matched') }
   scope :require_match_reminder_sending, lambda {
@@ -60,6 +62,10 @@ class Exchange < ApplicationRecord
   end
 
   private
+
+  def validate_match_at
+    errors.add(:match_at, "must be before the exchange date") if (match_at && exchange_at) && (match_at >= exchange_at)
+  end
 
   def send_participants_email(email_name)
     email_name = "send_#{email_name}_email".to_sym
