@@ -17,12 +17,4 @@
 
 %hr
 
-.row
-  .six.columns
-    %h2 Time until gifting:
-  .six.columns
-    %h3= countdown_timer @exchange.exchange_at
-    %p
-      %em
-        = @exchange.exchange_at.to_s(:long)
-        (#{current_tz_info})
+= render 'time_to_exchange', exchange: @exchange

@@ -46,12 +46,8 @@
 
 %hr
 
-.row
-  .six.columns
-    %h2 Time until matching:
-  .six.columns
-    %h3= countdown_timer @exchange.match_at
-    %p
-      %em
-        = @exchange.match_at.to_s(:long)
-        (#{current_tz_info})
+= render 'time_to_matching', exchange: @exchange
+
+%hr
+
+= render 'time_to_exchange', exchange: @exchange
