@@ -3,7 +3,7 @@
     = pluralize(object.errors.count, "error")
     prevented this
     = object.model_name.human
-    from being savved:
+    from being saved:
 
   %ul
     - object.errors.full_messages.each do |message|
