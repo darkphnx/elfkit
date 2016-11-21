@@ -6,7 +6,7 @@ class Participant < ApplicationRecord
   has_one :giftee, through: :participant_match
 
   validates :name, presence: true
-  validates :email_address, presence: true, uniqueness: { scope: :exchange_id, 
+  validates :email_address, presence: true, uniqueness: { scope: :exchange_id,
     message: "is already signed up to this exchange" }
   validates :login_token, presence: true
 
@@ -17,6 +17,8 @@ class Participant < ApplicationRecord
   after_create :send_confirmation_email
 
   scope :participating, -> { where(participating: true) }
+  scope :unconfirmed, -> { where(participating: nil) }
+  scope :not_participating, -> { where(participating: false) }
 
   def self.login(permalink, login_token)
     matches = where(permalink: permalink, login_token: login_token)

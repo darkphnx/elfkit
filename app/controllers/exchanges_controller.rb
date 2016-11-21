@@ -1,14 +1,11 @@
 class ExchangesController < ApplicationController
+  include AdminOnlyActions
+
   before_action do
     @exchange = Exchange.find_by_permalink!(params[:id]) if params[:id]
   end
 
-  before_action only: [:edit, :update, :destroy] do
-    unless logged_in? && current_participant.admin?
-      redirect_to exchange_path(@exchange), alert: "You need to be logged in and be the exchange creator to edit. " \
-        "Use the login link in your signup email if you are the creator."
-    end
-  end
+  before_action :admin_only, only: [:edit, :update, :destroy]
 
   around_action :use_exchange_timestamp
 

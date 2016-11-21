@@ -15,3 +15,21 @@
   .row
     .ten.columns.offset-by-one
       = f.submit "Update exchange", class: 'button-primary u-pull-right'
+
+.row
+  .ten.columns.offset-by-one
+    %hr
+
+.row
+  .ten.columns.offset-by-one
+    - unless @exchange.participants.participating.empty?
+      %h4 Confirmed Participants:
+      = render 'participants/list', participants: @exchange.participants.participating, show_remove: @exchange.signup_stage?
+
+    - unless @exchange.participants.unconfirmed.empty?
+      %h4 Unconfirmed Participants:
+      = render 'participants/list', participants: @exchange.participants.unconfirmed, show_remove: @exchange.signup_stage?
+
+    - unless @exchange.participants.not_participating.empty?
+      %h4 Not Participating Participants:
+      = render 'participants/list', participants: @exchange.participants.not_participating, show_remove: @exchange.signup_stage?

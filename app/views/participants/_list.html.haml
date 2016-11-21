@@ -1,0 +1,8 @@
+- show_remove ||= false
+
+%ul.participant-list
+  - participants.each do |participant|
+    %li
+      %span.participant-list--name= participant.name
+      - if show_remove && !participant.admin?
+        = link_to "Remove", exchange_participant_path(@exchange, participant), data: { method: :delete, confirm: "Are you sure you wish to remove this user from the exchange? This action is not reversible." }, class: 'participant-list--link'

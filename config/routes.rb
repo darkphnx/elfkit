@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :exchanges, except: [:index], path: '/' do
-    resources :participants, only: [:create, :update] do
+    resources :participants, only: [:create, :update, :destroy] do
       get 'retrieve/:login_token', to: 'sessions#create', as: :retrieve
     end
   end

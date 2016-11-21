@@ -1,0 +1,11 @@
+.participant-list {
+  list-style-image: image-url("hr.svg")
+}
+
+.participant-list--name {
+  @extend h5;
+}
+
+.participant-list--link {
+  padding-left: 2rem;
+}
