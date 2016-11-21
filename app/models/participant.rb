@@ -5,9 +5,10 @@ class Participant < ApplicationRecord
   has_one :participant_match, foreign_key: :gifter_id, dependent: :destroy
   has_one :giftee, through: :participant_match
 
-  validates :name, presence: true
-  validates :email_address, presence: true, uniqueness: { scope: :exchange_id,
-    message: "is already signed up to this exchange" }
+  validates :name, presence: true, uniqueness: { scope: :exchange_id, message: "is already used by someone else in " \
+    "this exchange, please add some differentiator such as a second initial." }
+  validates :email_address, presence: true, uniqueness: { scope: :exchange_id, message: "is already signed up to " \
+    "this exchange" }
   validates :login_token, presence: true
 
   before_validation do
