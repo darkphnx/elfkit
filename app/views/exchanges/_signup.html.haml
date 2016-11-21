@@ -31,7 +31,9 @@
           Thanks! We've sent an email to <strong>#{@participant.email_address}</strong> which contains a link that you
           must click on in order to confirm your participation.
   - else
-    = form_for [@exchange, @participant] do |f|
+    = form_for [@exchange, @participant], data: { remote: true }, html: { class: "js-data-form" } do |f|
+      .row
+        .ten.columns.offset-by-one.js-data-form--errors
       .row
         .five.columns.offset-by-one= f.text_field :name, placeholder: "Name", class: 'u-full-width'
         .five.columns= f.email_field :email_address, placeholder: "E-Mail Address", class: 'u-full-width'

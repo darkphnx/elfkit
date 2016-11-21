@@ -14,3 +14,7 @@ $ ->
   countdowns = $('.js-countdown-timer')
   countdowns.each (i, el)=>
     new Elfkit.CountdownTimer($(el))
+
+  signupForm = $('.js-data-form')
+  signupForm.each (i, el)=>
+    new Elfkit.DataRemoteForm($(el))

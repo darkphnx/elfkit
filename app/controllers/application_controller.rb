@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
     current_participant.is_a?(Participant)
   end
 
+  def js_errors_for(object)
+    { errors: render_to_string(partial: 'shared/validation_errors', locals: { object: object }, formats: :html) }
+  end
+
   helper_method :logged_in?, :current_participant
 end

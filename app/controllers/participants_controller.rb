@@ -23,11 +23,19 @@ class ParticipantsController < ApplicationController
   def create
     @participant = @exchange.participants.build(safe_create_participant_params)
 
-    if @participant.save
-      redirect_to exchange_path(@exchange, invited: @participant.permalink)
-    else
-      redirect_to exchange_path(@exchange), alert: "Sorry, couldn't send invite. Please check your name or " \
-        "e-mail address."
+    respond_to do |wants|
+      if @participant.save
+        redirect_url = exchange_path(@exchange, invited: @participant.permalink)
+
+        wants.html { redirect_to redirect_url }
+        wants.json { render json: { redirect: redirect_url } }
+      else
+        wants.html do
+          redirect_to exchange_path(@exchange), alert: "Sorry, couldn't send invite. Please check your name or " \
+            "e-mail address."
+        end
+        wants.json { render json: js_errors_for(@participant), status: :unprocessable_entity }
+      end
     end
   end
 
