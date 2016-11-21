@@ -29,8 +29,24 @@ RSpec.describe Exchange, type: :model do
       expect(exchange.errors[:match_at]).to include("must be before the exchange date")
     end
 
-    it "doesn't allow the match_date to be altered after matching" do
+    it "doesn't allow the match_at to be altered after matching" do
+      exchange = create(:exchange)
 
+      exchange.stage = 'matched'
+      exchange.match_at = exchange.match_at + 1.hour
+      exchange.valid?
+
+      expect(exchange.errors[:match_at]).to include("cannot be altered after matching has taken place")
+    end
+
+    it "doesn't allow the exchange_at to be altered after completion" do
+      exchange = create(:exchange)
+
+      exchange.stage = 'completed'
+      exchange.exchange_at = exchange.exchange_at + 1.hour
+      exchange.valid?
+
+      expect(exchange.errors[:exchange_at]).to include("cannot be altered after exchanging has taken place")
     end
   end
 
