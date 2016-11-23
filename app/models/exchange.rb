@@ -52,6 +52,7 @@ class Exchange < ApplicationRecord
 
   def send_match_reminder_emails
     send_participants_email(:match_reminder)
+    update_attribute(:match_reminder_sent_at, Time.now.utc)
   end
 
   def send_match_ready_emails
@@ -60,6 +61,7 @@ class Exchange < ApplicationRecord
 
   def send_exchange_reminder_emails
     send_participants_email(:exchange_reminder)
+    update_attribute(:exchange_reminder_sent_at, Time.now.utc)
   end
 
   private
