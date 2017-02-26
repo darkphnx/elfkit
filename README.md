@@ -1,24 +1,18 @@
-# README
+# Elfkit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Elfkit is a gift exchange management application. Originally written to manage
+the annual office Secret Santa, though it could be easilly reskinned to be less
+festive.
 
-Things you may want to cover:
+See a working version at [elfk.it](https://elfk.it).
 
-* Ruby version
+The app is Rails 5 with the frontend written with SASS, Haml and Coffeescript.
+Background jobs (such as matching) are taken care of with ActiveJob and
+DelayedJob.
 
-* System dependencies
+The participant matching code is probably the most interesting, and can be
+found at `lib/elfkit/matchmaker.rb`, with a corresponding set of tests at
+`spec/lib/matchmaker_spec.rb`.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Screenshot 1](http://i.imgur.com/b3Zhn2b.png)
+![Screenshot 2](http://i.imgur.com/loO7iQV.png)
