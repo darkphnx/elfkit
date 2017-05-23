@@ -55,7 +55,7 @@ Rails.application.configure do
   config.domain = 'elfkit.dev'
   config.protocol = 'http'
 
-  config.action_mailer.delivery_method = :appmail
-  config.action_mailer.appmail_settings = { server_key: "NUkn1liaeMhTaaI4roVmqfjy" }
+  config.action_mailer.delivery_method = :postal
+  config.action_mailer.appmail_settings = { server_key: ENV['POSTAL_API_KEY'], host: "post.atech.io" }
   config.action_mailer.asset_host = "#{config.protocol}://#{config.domain}"
 end

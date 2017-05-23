@@ -17,7 +17,7 @@ gem 'haml-rails'
 # Scheduled tasks
 gem 'clockwork'
 # Send email
-gem 'appmail-rails'
+gem 'postal-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -55,10 +55,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_real_favicon'
-end
 
-group :production do
-  gem 'viaduct_rails_helpers'
+  gem 'capistrano', '~> 2.0', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

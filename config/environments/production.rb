@@ -87,7 +87,7 @@ Rails.application.configure do
   config.domain = 'elfk.it'
   config.protocol = 'https'
 
-  config.action_mailer.delivery_method = :appmail
-  config.action_mailer.appmail_settings = { server_key: ENV['APPMAIL_API_KEY'] }
+  config.action_mailer.delivery_method = :postal
+  config.action_mailer.appmail_settings = { server_key: ENV['POSTAL_API_KEY'], host: "post.atech.io" }
   config.action_mailer.asset_host = "#{config.protocol}://#{config.domain}"
 end
