@@ -11,5 +11,6 @@ env:
 processes:
   web:
     restart_mode: usr1
+    term_signal: INT
   env:
     PORT: 8081
