@@ -57,6 +57,7 @@ group :development do
   gem 'rails_real_favicon'
 
   gem 'capistrano', '~> 2.0', :require => false
+  gem 'procodile-capistrano'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
