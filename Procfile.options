@@ -1,0 +1,15 @@
+app_name: Elfkit
+log_root: log
+pid_root: tmp/pids
+user: rails
+
+env:
+  RAILS_ENV: production
+  POSTAL_API_KEY:
+  SECRET_KEY_BASE:
+
+processes:
+  web:
+    restart_mode: usr1
+  env:
+    PORT: 8081
