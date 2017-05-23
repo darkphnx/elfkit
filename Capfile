@@ -51,5 +51,5 @@ namespace :deploy do
   end
 end
 
-before "deploy:update_code", "deploy:assets:symlink"
-before "deploy:update_code", "deploy:assets:symlink"
+before "deploy:assets:symlink", "deploy:symlink_config"
+before "deploy:assets:symlink", "deploy:symlink_cache"
