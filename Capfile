@@ -32,7 +32,7 @@ ssh_options[:paranoid] = true # comment out if it gives you trouble. newest net/
 role :app, "danw.infra.atech.io"
 role :db, "danw.infra.atech.io", :primary => true
 
-set :config_files, ['database.yml']
+set :config_files, ['database.yml', 'secrets.yml']
 
 namespace :deploy do
   desc 'Symlink configuration files into new application'
