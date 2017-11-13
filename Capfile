@@ -6,7 +6,7 @@ load 'deploy/assets'
 
 ## The repository from which you wish to deploy your application
 ## from should be entered here.
-set :repository, "git@codebasehq.com:phoenixdev/elfkit/elfkit.git"
+set :repository, "git@github.com:darkphnx/elfkit.git"
 
 # General
 set :application,         "elfkit"
