@@ -34,6 +34,10 @@ class Participant < ApplicationRecord
     save(validate: false)
   end
 
+  def acceptable_giftee?(potential_giftee)
+    potential_giftee != self
+  end
+
   def email_tag
     "#{name} <#{email_address}>"
   end
