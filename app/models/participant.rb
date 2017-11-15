@@ -2,8 +2,12 @@ class Participant < ApplicationRecord
   include RandomPermalink
 
   belongs_to :exchange
+
   has_one :participant_match, foreign_key: :gifter_id, dependent: :destroy
   has_one :giftee, through: :participant_match
+
+  has_many :prohibited_matches, foreign_key: :gifter_id, dependent: :destroy
+  has_many :prohibited_giftees, through: :prohibited_matches, source: :giftee
 
   validates :name, presence: true, uniqueness: { scope: :exchange_id, message: "is already used by someone else in " \
     "this exchange, please add some differentiator such as a second initial." }
@@ -35,7 +39,7 @@ class Participant < ApplicationRecord
   end
 
   def acceptable_giftee?(potential_giftee)
-    potential_giftee != self
+    potential_giftee != self && !prohibited_giftees.include?(potential_giftee)
   end
 
   def email_tag
