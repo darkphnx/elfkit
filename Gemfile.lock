@@ -137,7 +137,7 @@ GEM
     postal-ruby (1.0.1)
       moonrope-client (>= 1.0.2, < 1.1)
     procodile-capistrano (1.0.3)
-    puma (3.6.0)
+    puma (3.12.0)
     puma_worker_killer (0.0.7)
       get_process_mem (~> 0.2)
       puma (>= 2.7, < 4)
@@ -277,4 +277,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.14.6
+   1.16.1
