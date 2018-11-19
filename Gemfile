@@ -34,6 +34,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'faraday'
+gem 'faraday_middleware'
+
+gem 'omniauth'
+gem 'ginjo-omniauth-slack'
+
 gem 'delayed_job_active_record'
 
 group :development, :test do

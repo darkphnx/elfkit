@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'slackbot', to: 'slackbot#event'
+
   get 'logout', to: 'sessions#destroy', as: :logout
   root to: 'pages#home'
 
