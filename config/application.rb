@@ -23,6 +23,7 @@ module Elfkit
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << "#{Rails.root}/lib"
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailer_previews"
   end
 end
